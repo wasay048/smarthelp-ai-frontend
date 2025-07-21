@@ -4,6 +4,18 @@ import { useAuth } from "../hooks/useAuth";
 const Profile: React.FC = () => {
   const { user } = useAuth();
 
+
+  const getUsername = () => {
+    if (user?.user?.username) return user.user.username;
+    if (user?.username) return user.username;
+    return "User";
+  };
+
+  const getUserInitial = () => {
+    const username = getUsername();
+    return username.charAt(0).toUpperCase();
+  };
+
   if (!user) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -22,12 +34,12 @@ const Profile: React.FC = () => {
             <div className="flex items-center space-x-6">
               <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center">
                 <span className="text-2xl font-bold text-white">
-                  {user.username?.charAt(0).toUpperCase() || "U"}
+                  {getUserInitial()}
                 </span>
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">
-                  {user.username}
+                  {getUsername()}
                 </h1>
                 <p className="text-gray-600">SmartHelp.AI User</p>
               </div>
@@ -42,7 +54,7 @@ const Profile: React.FC = () => {
                   <label className="text-sm font-medium text-gray-500">
                     Username
                   </label>
-                  <p className="mt-1 text-sm text-gray-900">{user.username}</p>
+                  <p className="mt-1 text-sm text-gray-900">{getUsername()}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-500">

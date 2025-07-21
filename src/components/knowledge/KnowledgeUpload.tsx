@@ -121,21 +121,19 @@ const KnowledgeUpload: React.FC<KnowledgeUploadProps> = ({
         <div className="flex rounded-md shadow-sm">
           <button
             onClick={() => setUploadMethod("file")}
-            className={`px-4 py-2 text-sm font-medium rounded-l-md border ${
-              uploadMethod === "file"
+            className={`px-4 py-2 text-sm font-medium rounded-l-md border transition-colors ${uploadMethod === "file"
                 ? "bg-blue-600 text-white border-blue-600"
-                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-            }`}
+                : "bg-white text-black border-gray-300 hover:bg-blue-500 hover:text-white hover:border-blue-500"
+              }`}
           >
             Upload File
           </button>
           <button
             onClick={() => setUploadMethod("text")}
-            className={`px-4 py-2 text-sm font-medium rounded-r-md border-t border-r border-b ${
-              uploadMethod === "text"
+            className={`px-4 py-2 text-sm font-medium rounded-r-md border-t border-r border-b transition-colors ${uploadMethod === "text"
                 ? "bg-blue-600 text-white border-blue-600"
-                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-            }`}
+                : "bg-white text-black border-gray-300 hover:bg-blue-500 hover:text-white hover:border-blue-500"
+              }`}
           >
             Paste FAQ Text
           </button>
@@ -166,11 +164,10 @@ const KnowledgeUpload: React.FC<KnowledgeUploadProps> = ({
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
-              dragOver
+            className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${dragOver
                 ? "border-blue-500 bg-blue-50"
                 : "border-gray-300 hover:border-gray-400"
-            }`}
+              }`}
           >
             <div className="text-gray-400 mb-4">
               <svg

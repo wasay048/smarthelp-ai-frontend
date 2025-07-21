@@ -210,10 +210,10 @@ const Header: React.FC = () => {
                 </svg>
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-xl font-bold text-gray-900">
+                <h1 className="text-xl font-bold text-white hover:text-black transition-colors">
                   SmartHelp.AI
                 </h1>
-                <p className="text-xs text-gray-500">FAQ Assistant</p>
+                <p className="text-xs text-white hover:text-black transition-colors">FAQ Assistant</p>
               </div>
             </button>
           </div>
@@ -224,20 +224,19 @@ const Header: React.FC = () => {
               <button
                 key={item.name}
                 onClick={() => navigate(item.href)}
-                className={`relative flex items-center space-x-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all duration-200 ${
-                  item.current
-                    ? "bg-white text-blue-700 shadow-sm ring-1 ring-gray-200"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-white/50"
-                }`}
+                className={`relative flex items-center space-x-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all duration-200 ${item.current
+                  ? "bg-blue-600 text-white shadow-sm ring-1 ring-blue-200"
+                  : "bg-white text-black hover:text-white hover:bg-blue-500"
+                  }`}
               >
                 <span
-                  className={item.current ? "text-blue-600" : "text-gray-400"}
+                  className={item.current ? "text-white" : "text-black hover:text-white transition-colors"}
                 >
                   {item.icon}
                 </span>
                 <span>{item.name}</span>
                 {item.current && (
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 rounded-full"></div>
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full"></div>
                 )}
               </button>
             ))}
@@ -249,7 +248,7 @@ const Header: React.FC = () => {
               <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                  className="flex items-center space-x-3 text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg p-2 transition-colors"
+                  className="flex items-center space-x-3 text-white hover:text-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg p-2 transition-colors"
                 >
                   <div className="w-9 h-9 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-md ring-2 ring-white">
                     <span className="text-sm font-semibold text-white">
@@ -257,15 +256,14 @@ const Header: React.FC = () => {
                     </span>
                   </div>
                   <div className="hidden sm:block text-left">
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-white hover:text-black transition-colors">
                       {getUsername()}
                     </p>
-                    <p className="text-xs text-gray-500">Administrator</p>
+                    <p className="text-xs text-white hover:text-black transition-colors">Administrator</p>
                   </div>
                   <svg
-                    className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
-                      isUserMenuOpen ? "rotate-180" : ""
-                    }`}
+                    className={`w-4 h-4 text-white hover:text-black transition-transform duration-200 ${isUserMenuOpen ? "rotate-180" : ""
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -281,24 +279,30 @@ const Header: React.FC = () => {
 
                 {/* User Dropdown Menu */}
                 {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in-0 zoom-in-95 duration-200">
+                  <div className="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 px-2 m-2 z-50 animate-in fade-in-0 zoom-in-95 duration-200 space-y-2">
                     <div className="px-4 py-3 border-b border-gray-100">
-                      <p className="text-sm text-gray-500">Signed in as</p>
-                      <p className="text-sm font-medium text-gray-900 truncate">
+                      <p className="text-sm text-black transition-colors">Signed in as</p>
+                      <p className="text-sm font-medium text-black transition-colors truncate">
                         {getUsername()}
                       </p>
                     </div>
 
-                    <div className="py-2">
+                    <div className="py-2 space-y-1">
                       <button
                         onClick={() => {
                           navigate("/dashboard");
                           setIsUserMenuOpen(false);
                         }}
-                        className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        className={`flex items-center w-full px-4 py-3 text-sm rounded-md transition-colors ${location.pathname === "/dashboard"
+                          ? "bg-blue-600 text-white"
+                          : "bg-white text-black hover:bg-blue-500 hover:text-white"
+                          }`}
                       >
                         <svg
-                          className="w-4 h-4 mr-3 text-gray-400"
+                          className={`w-4 h-4 mr-3 transition-colors ${location.pathname === "/dashboard"
+                            ? "text-white"
+                            : "text-black"
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -324,10 +328,16 @@ const Header: React.FC = () => {
                           navigate("/profile");
                           setIsUserMenuOpen(false);
                         }}
-                        className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        className={`flex items-center w-full px-4 py-3 text-sm rounded-md transition-colors ${location.pathname === "/profile"
+                          ? "bg-blue-600 text-white"
+                          : "bg-white text-black hover:bg-blue-500 hover:text-white"
+                          }`}
                       >
                         <svg
-                          className="w-4 h-4 mr-3 text-gray-400"
+                          className={`w-4 h-4 mr-3 transition-colors ${location.pathname === "/profile"
+                            ? "text-white"
+                            : "text-black"
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -347,10 +357,16 @@ const Header: React.FC = () => {
                           navigate("/knowledge");
                           setIsUserMenuOpen(false);
                         }}
-                        className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        className={`flex items-center w-full px-4 py-3 text-sm rounded-md transition-colors ${location.pathname === "/knowledge"
+                          ? "bg-blue-600 text-white"
+                          : "bg-white text-black hover:bg-blue-500 hover:text-white"
+                          }`}
                       >
                         <svg
-                          className="w-4 h-4 mr-3 text-gray-400"
+                          className={`w-4 h-4 mr-3 transition-colors ${location.pathname === "/knowledge"
+                            ? "text-white"
+                            : "text-black"
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -366,13 +382,13 @@ const Header: React.FC = () => {
                       </button>
                     </div>
 
-                    <div className="border-t border-gray-100 py-2">
+                    <div className="border-t border-gray-100 py-2 space-y-1">
                       <button
                         onClick={() => {
                           handleLogout();
                           setIsUserMenuOpen(false);
                         }}
-                        className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                        className="flex items-center w-full px-4 py-3 text-sm text-red-600 bg-red-50 rounded-md transition-colors"
                       >
                         <svg
                           className="w-4 h-4 mr-3 text-red-500"
@@ -405,7 +421,7 @@ const Header: React.FC = () => {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+              className="md:hidden p-2 rounded-lg text-white hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
               aria-label={
                 isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"
               }
@@ -447,20 +463,19 @@ const Header: React.FC = () => {
                     navigate(item.href);
                     setIsMobileMenuOpen(false);
                   }}
-                  className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                    item.current
-                      ? "bg-blue-50 text-blue-700 border border-blue-200"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                  }`}
+                  className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors ${item.current
+                    ? "bg-blue-600 text-white border border-blue-200"
+                    : "bg-white text-black hover:text-white hover:bg-blue-500"
+                    }`}
                 >
                   <span
-                    className={item.current ? "text-blue-600" : "text-gray-400"}
+                    className={item.current ? "text-white" : "text-black hover:text-white transition-colors"}
                   >
                     {item.icon}
                   </span>
                   <span>{item.name}</span>
                   {item.current && (
-                    <div className="ml-auto w-2 h-2 bg-blue-600 rounded-full"></div>
+                    <div className="ml-auto w-2 h-2 bg-white rounded-full"></div>
                   )}
                 </button>
               ))}

@@ -192,31 +192,28 @@ const Knowledge: React.FC = () => {
             <nav className="-mb-px flex space-x-8 px-6">
               <button
                 onClick={() => setActiveTab("upload")}
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === "upload"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                }`}
+                className={`py-4 px-4 rounded-t-lg font-medium text-sm transition-colors ${activeTab === "upload"
+                    ? "bg-blue-600 text-white border-b-2 border-blue-600"
+                    : "bg-white text-black hover:text-white hover:bg-blue-500"
+                  }`}
               >
                 Upload FAQs
               </button>
               <button
                 onClick={() => setActiveTab("manual")}
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === "manual"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                }`}
+                className={`py-4 px-4 rounded-t-lg font-medium text-sm transition-colors ${activeTab === "manual"
+                    ? "bg-blue-600 text-white border-b-2 border-blue-600"
+                    : "bg-white text-black hover:text-white hover:bg-blue-500"
+                  }`}
               >
                 Manual Entry
               </button>
               <button
                 onClick={() => setActiveTab("list")}
-                className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === "list"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                }`}
+                className={`py-4 px-4 rounded-t-lg font-medium text-sm transition-colors ${activeTab === "list"
+                    ? "bg-blue-600 text-white border-b-2 border-blue-600"
+                    : "bg-white text-black hover:text-white hover:bg-blue-500"
+                  }`}
               >
                 FAQ Database ({knowledge?.length || 0})
               </button>

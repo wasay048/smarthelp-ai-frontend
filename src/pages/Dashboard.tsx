@@ -52,7 +52,7 @@ const Dashboard: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="text-gray-400 mb-4">
+          <div className="text-white hover:text-black transition-colors mb-4">
             <svg
               className="mx-auto h-12 w-12"
               fill="none"
@@ -213,7 +213,7 @@ const Dashboard: React.FC = () => {
             </h2>
             <button
               onClick={handleAddKnowledge}
-              className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+              className="text-white hover:text-black text-sm font-medium"
             >
               View All →
             </button>
@@ -267,7 +267,7 @@ const Dashboard: React.FC = () => {
               <p className="text-gray-500 text-sm">No FAQs uploaded yet</p>
               <button
                 onClick={handleAddKnowledge}
-                className="mt-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
+                className="mt-2 text-white hover:text-black text-sm font-medium"
               >
                 Upload your first FAQ →
               </button>
@@ -298,7 +298,7 @@ const Dashboard: React.FC = () => {
               ))}
               <button
                 onClick={handleAddKnowledge}
-                className="text-blue-600 hover:text-blue-700 text-sm font-medium w-full text-left"
+                className="text-white-600 hover:text-white-700 text-sm font-medium w-full text-left"
               >
                 View all activity →
               </button>
