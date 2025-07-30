@@ -5,7 +5,7 @@ import {
   RegisterCredentials,
 } from "../types/auth.types";
 
-const API_URL = "http://localhost:5000/api/auth"; // Updated to use port 5000
+const API_URL = "http://5.161.120.206/smarthelp/api/auth"; // Updated to use port 5000
 
 export const login = async (
   credentials: LoginCredentials

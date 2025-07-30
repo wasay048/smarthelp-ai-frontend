@@ -1,7 +1,7 @@
 import axios from "axios";
 import { EmbedCode } from "../types/embed.types";
 
-const API_URL = "http://localhost:5000/api/embed"; // Updated to use port 5000
+const API_URL = "http://5.161.120.206/smarthelp/api/embed"; // Updated to use port 5000
 
 // Function to generate embed code
 export const generateEmbedCode = async (data: EmbedCode): Promise<string> => {
