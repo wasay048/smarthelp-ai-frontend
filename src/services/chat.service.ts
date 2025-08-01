@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ChatMessage } from "../types/chat.types";
 
-const API_URL = "http://localhost:5000/api/chat";
+const API_URL = "http://5.161.120.206/smarthelp/api/chat";
 
 export const sendMessage = async (
   message: string,

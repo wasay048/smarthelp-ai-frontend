@@ -6,7 +6,7 @@ import {
   KnowledgeStats,
 } from "../types/knowledge.types";
 
-const API_URL = "http://localhost:5000/api/knowledge";
+const API_URL = "http://5.161.120.206/smarthelp/api/knowledge";
 
 // Get auth token
 const getAuthToken = () => localStorage.getItem("authToken");

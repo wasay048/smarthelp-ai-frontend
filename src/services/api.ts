@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:5000/api", // Updated to match your backend port
+  baseURL: "http://5.161.120.206/smarthelp/api", // Updated to match your backend port
   headers: {
     "Content-Type": "application/json",
   },
