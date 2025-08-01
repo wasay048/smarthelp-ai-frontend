@@ -6,29 +6,41 @@ import Input from "../components/ui/Input";
 import Spinner from "../components/ui/Spinner";
 
 const Auth: React.FC = () => {
-  const { login, register, loading, error, user } = useAuth();
+  const { login, register, loading, error, user, clearError } = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isRegistering, setIsRegistering] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [justRegistered, setJustRegistered] = useState(false);
   const [validationErrors, setValidationErrors] = useState<{
     username?: string;
     password?: string;
   }>({});
 
-  // // Redirect to dashboard if user is already authenticated
+  // Redirect to dashboard if user is already authenticated (but not if just registered)
   useEffect(() => {
-    if (user) {
+    if (user && !justRegistered && !loading) {
       navigate("/dashboard");
     }
-  }, [user, navigate]);
+  }, [user, navigate, justRegistered, loading]);
+
+  // Show loading spinner while checking authentication
+  if (loading && !user && !error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <Spinner />
+      </div>
+    );
+  }
 
   const resetForm = () => {
     setUsername("");
     setPassword("");
     setValidationErrors({});
     setSuccessMessage("");
+    // Clear error - clearError is now available from useAuth
+    clearError();
   };
 
   const validateForm = () => {
@@ -67,20 +79,24 @@ const Auth: React.FC = () => {
         setSuccessMessage(
           "Account created successfully! Please sign in with your credentials."
         );
+        setJustRegistered(true); // Mark that user just registered
         setIsRegistering(false);
         resetForm();
       } else {
         await login(username, password);
+        setJustRegistered(false); // Reset the flag on login
         // User will be redirected by useEffect when user state updates
       }
     } catch (error: any) {
       console.error("Authentication error:", error);
+      setJustRegistered(false); // Reset flag on error
       // Error is handled by the useAuth hook
     }
   };
 
   const handleToggleMode = () => {
     setIsRegistering(!isRegistering);
+    setJustRegistered(false); // Reset the flag when switching modes
     resetForm();
   };
 
@@ -224,8 +240,8 @@ const Auth: React.FC = () => {
                   ? "Creating account..."
                   : "Signing in..."
                 : isRegistering
-                ? "Create Account"
-                : "Sign In"}
+                  ? "Create Account"
+                  : "Sign In"}
             </Button>
           </div>
 

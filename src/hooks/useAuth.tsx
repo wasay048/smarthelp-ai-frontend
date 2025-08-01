@@ -18,12 +18,16 @@ const useAuth = () => {
       try {
         const token = localStorage.getItem("authToken");
         if (token) {
+          // Validate the token by making a request to getCurrentUser
           const currentUser = await getCurrentUser();
           setUser(currentUser);
         }
       } catch (error) {
         console.error("Auth initialization failed:", error);
+        // If token validation fails, clear everything
         localStorage.removeItem("authToken");
+        setUser(null);
+        setError(null); // Don't show error on page refresh
       } finally {
         setLoading(false);
       }
@@ -47,6 +51,9 @@ const useAuth = () => {
       const errorMessage =
         err.response?.data?.message || err.message || "Login failed";
       setError(errorMessage);
+      // Clear any invalid token from localStorage
+      localStorage.removeItem("authToken");
+      setUser(null);
       throw err;
     } finally {
       setLoading(false);
@@ -81,6 +88,10 @@ const useAuth = () => {
       localStorage.removeItem("authToken");
     } catch (err: any) {
       console.error("Logout error:", err);
+      // Even if logout fails, clear local state
+      setUser(null);
+      setError(null);
+      localStorage.removeItem("authToken");
     } finally {
       setLoading(false);
     }
