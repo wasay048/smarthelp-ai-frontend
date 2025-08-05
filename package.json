@@ -4,9 +4,9 @@
   "description": "AI FAQ Chatbot for Any Website",
   "main": "src/main.tsx",
   "scripts": {
-    "dev": "vite",
-    "start": "vite",
-    "build": "vite build",
+    "dev": "node init && vite",
+    "start": "node init && vite",
+    "build": "node init && vite build",
     "serve": "vite preview",
     "preview": "vite preview"
   },
