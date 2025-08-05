@@ -47,9 +47,9 @@ const Auth: React.FC = () => {
     const errors: { username?: string; password?: string } = {};
 
     if (!username.trim()) {
-      errors.username = "Username is required";
+      errors.username = "Email is required";
     } else if (username.length < 3) {
-      errors.username = "Username must be at least 3 characters";
+      errors.username = "Email must be at least 3 characters";
     }
 
     if (!password.trim()) {
@@ -100,6 +100,13 @@ const Auth: React.FC = () => {
     resetForm();
   };
 
+  const handleDemoUser = () => {
+    setUsername("demo@smarthelp.com");
+    setPassword("12345@smarthelp");
+    setValidationErrors({});
+    clearError();
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -136,14 +143,14 @@ const Auth: React.FC = () => {
             <div>
               <Input
                 id="username"
-                label="Username"
-                type="text"
-                placeholder="Enter your username"
+                label="Email"
+                type="email"
+                placeholder="Enter your email address"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 error={validationErrors.username}
                 disabled={loading}
-                autoComplete="username"
+                autoComplete="email"
               />
             </div>
 
@@ -163,6 +170,36 @@ const Auth: React.FC = () => {
               />
             </div>
           </div>
+
+          {/* Demo User Button - Only show for login */}
+          {!isRegistering && (
+            <div className="text-center">
+              <button
+                type="button"
+                onClick={handleDemoUser}
+                className="inline-flex items-center px-4 py-2 border border-blue-300 text-sm font-medium rounded-md text-blue-700 bg-blue-50 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                disabled={loading}
+              >
+                <svg
+                  className="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+                Try Demo User
+              </button>
+              <p className="mt-2 text-xs text-gray-500">
+                Click to fill in demo credentials automatically
+              </p>
+            </div>
+          )}
 
           {/* Success Message */}
           {successMessage && (
